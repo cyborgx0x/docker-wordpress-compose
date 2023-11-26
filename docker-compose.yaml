@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    env_file:
+      - .env
+    volumes:
+      - wordpress:/var/www/html
+
+  db:
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - diop_data:/var/lib/mysql
+
+volumes:
+  wordpress:
+  diop_data:
+    external: true
